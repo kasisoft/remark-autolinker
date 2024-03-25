@@ -1,0 +1,9 @@
+---
+title: Some links
+---
+Some links:
+
+* https://www.bibo.com
+* [Titled Link](https://www.gollum.test)
+* [mailto--](mailto://frog@insect.com)
+

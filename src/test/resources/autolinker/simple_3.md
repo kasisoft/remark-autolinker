@@ -1,0 +1,4 @@
+---
+title: With some text
+---
+With some basic text

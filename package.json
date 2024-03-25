@@ -1,0 +1,59 @@
+{
+    "name": "@kasisoft/remark-autolinker",
+    "version": "0.1.0",
+    "description": "Automatically generate links within markdown files based upon a predefined configuration.",
+    "main": "lib/bundle.esm.js",
+    "types": "lib/index.d.ts",
+    "type": "module",
+    "engines": {
+        "node": ">=18.0.0",
+        "pnpm": ">=8.15.0"
+    },
+    "files": [
+        "lib/bundle.esm.js",
+        "lib/index.d.ts",
+        "LICENSE",
+        "README.md"
+    ],
+    "scripts": {
+        "prepare": "mkdir -p lib && cp -f src/main/index.d.ts lib/index.d.ts",
+        "prepack": "rollup -c",
+        "pack": "pnpm pack",
+        "test": "vitest run"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:kasisoft/remark-autolinker.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kasisoft/remark-autolinker/issues"
+    },
+    "homepage": "https://github.com/kasisoft/remark-autolinker",
+    "keywords": [
+        "markdown",
+        "mdsvex",
+        "remark",
+        "typescript"
+    ],
+    "author": "Daniel Kasmeroglu",
+    "license": "MIT",
+    "devDependencies": {
+        "@rollup/plugin-alias": "^5.1.0",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-typescript": "^11.1.6",
+        "@types/mdast": "^4.0.3",
+        "@types/unist": "^3.0.2",
+        "arktype": "1.0.29-alpha",
+        "remark": "^15.0.1",
+        "remark-frontmatter": "^5.0.0",
+        "remark-parse": "^11.0.0",
+        "remark-stringify": "^11.0.0",
+        "rollup": "^4.12.0",
+        "tslib": "^2.6.2",
+        "typescript": "^5.3.2",
+        "unified": "^11.0.4",
+        "unist-util-visit": "^5.0.0",
+        "vite": "^5.1.4",
+        "vitest": "^1.3.1"
+    }
+}
