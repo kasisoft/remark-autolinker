@@ -15,6 +15,7 @@ export interface Link {
 
 export interface RemarkAutolinkerOptions {
     debug           : Debug|'None'|'Default'|'RootBefore'|'RootAfter'|'All'|string[],
+    debugPosition   : boolean,
     all             : boolean,
     caseInsensitive : boolean,
     links           : Link[],

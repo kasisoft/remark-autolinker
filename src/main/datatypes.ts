@@ -35,6 +35,7 @@ export const LinkDef = type({
 
 export const RemarkAutolinkerOptionsDef = type({
     "debug"           : ["(number|'None'|'Default'|'RootBefore'|'RootAfter'|'All'|string[])", "|>", parseDebug],
+    "debugPosition"   : "boolean",
     "all"             : "boolean",
     "caseInsensitive" : "boolean",
     "links"           : arrayOf(LinkDef),
