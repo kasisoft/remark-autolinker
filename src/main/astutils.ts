@@ -16,10 +16,6 @@ export function locateParagraphs(tree: Node): Parent[] {
 
 }
 
-export function getTextChildren(parent: Parent): Text[] {
-    return getChildNodes<Text>(parent, 'text');
-}
-
 export function getChildNodes<T>(parent: Parent, type: string): T[] {
     const result: T[] = [];
     for (let i = 0; i < parent.children.length; i++) {

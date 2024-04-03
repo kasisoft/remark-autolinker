@@ -2,8 +2,6 @@ import { Node, Parent } from 'unist';
 import { Text, Link } from 'mdast';
 
 import { RemarkAutolinkerOptions } from '$main/datatypes';
-import { getTextChildren } from '$main/astutils';
-
 
 export interface AutolinkState {
     splitter: RegExp,                   // a regex matching all the keys
@@ -142,16 +140,19 @@ function buildNodes(state: AutolinkState, text: string[], all: boolean): Node[] 
 }
 
 export function autolinkParagraph(state: AutolinkState, paragraph: Parent, all: boolean) {
-    const texts = getTextChildren(paragraph);
-    for (let i = texts.length - 1; i >= 0 ; i--) {
-        const textNode: Text = texts[i];
-        // split the text according to the identified link terms
-        const partitioned: string[] | null = partitionText(state, textNode.value, all);
-        if (partitioned) {
-            // build nodes per textual portion which can either be a text or a link
-            const nodes = buildNodes(state, partitioned, all);
-            // replace the text by the newly created nodes
-            paragraph.children.splice(i, 1, ...nodes);
+
+    for (let i = paragraph.children.length - 1; i >= 0; i--) {
+        const node: Node = paragraph.children[i];
+        if (node.type === 'text') {
+            const textNode: Text = node as Text;
+            const partitioned: string[] | null = partitionText(state, textNode.value, all);
+            if (partitioned) {
+                // build nodes per textual portion which can either be a text or a link
+                const nodes = buildNodes(state, partitioned, all);
+                // replace the text by the newly created nodes
+                paragraph.children.splice(i, 1, ...nodes);
+            }
         }
     }
+
 }
