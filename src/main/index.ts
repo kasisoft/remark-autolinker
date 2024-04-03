@@ -23,9 +23,8 @@ export function remarkAutolinker(options: RemarkAutolinkerOptions = DEFAULT_OPTI
         debugConfiguration(DEFAULT_OPTIONS, options, config);
     }
 
-    const autolinkState = buildInitialState(config);
-
     function impl(config: RemarkAutolinkerOptions, tree: Parent) {
+        const autolinkState = buildInitialState(config);
         const paragraphs = locateParagraphs(tree);
         paragraphs.forEach(p => autolinkParagraph(autolinkState, p, config.all));
     }
