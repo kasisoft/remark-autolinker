@@ -1,6 +1,6 @@
 {
     "name": "@kasisoft/remark-autolinker",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Automatically generate links within markdown files based upon a predefined configuration.",
     "main": "lib/bundle.esm.js",
     "types": "lib/index.d.ts",
