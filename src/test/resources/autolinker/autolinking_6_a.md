@@ -1,0 +1,6 @@
+---
+title: Make sure no parts of words are matched so there should be only one autolinking here.
+---
+This is significant but we could be wrong.
+
+Here is a link: ant

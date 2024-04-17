@@ -15,7 +15,8 @@ const DEFAULT_OPTIONS: RemarkAutolinkerOptions = {
         { key: 'mailto--', link: 'mailto://frog@insect.com' },
         { key: 'Java', link: 'https://www.java.com/de/' },
         { key: 'Spring', link: 'https://spring.io/' },
-        { key: 'Spring Boot', link: 'https://spring.io/projects/spring-boot' }
+        { key: 'Spring Boot', link: 'https://spring.io/projects/spring-boot' },
+        { key: 'ant', link: 'https://ant.apache.org' },
     ],
 };
 

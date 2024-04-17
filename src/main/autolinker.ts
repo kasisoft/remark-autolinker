@@ -29,6 +29,7 @@ function buildSplitterRegex(config: RemarkAutolinkerOptions): RegExp {
         .map(link => link.key)
         .sort((a, b) => b.length - a.length)
         ;
+
     const escapedLiterals: string = splittingLiterals.map(quote).join('|');
 
     let flags: string = 'g';
@@ -70,6 +71,16 @@ function partitionText(state: AutolinkState, text: string, all: boolean): string
 
         const word: string = matches[i][0];
         const index: number = matches[i].index;
+        const end: number = index + word.length;
+
+        const isValidStart = (index == 0) || /\W/.test(text.charAt(index - 1));
+        const isValidEnd   = (end == text.length) || /\W/.test(text.charAt(end));
+
+        if (!isValidStart || !isValidEnd) {
+            // the term needs to be at the beginning or preceeded by whitespace
+            // as well as finishing with the end or followed by a whitespace
+            continue;
+        }
 
         // there is some text before the link key
         if (index > start) {
@@ -94,7 +105,7 @@ function partitionText(state: AutolinkState, text: string, all: boolean): string
             joined = false;
         }
 
-        start = index + word.length;
+        start = end;
 
     }
 
