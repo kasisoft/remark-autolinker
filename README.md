@@ -9,6 +9,7 @@
 * [When should I use this?](#when-should-i-use-this)
 * [Install](#install)
 * [Usage](#usage)
+* [Direct Usage](#direct-usage)
 * [Configuration](#configuration)
 * [Contributing](#contributing)
 * [Thanks](#thanks)
@@ -84,6 +85,34 @@ pnpm i -D @kasisoft/remark-autolinker
             ...
         });
         ```
+
+
+## Direct Usage
+
+It's possible to use the autolinking functionality directly like this:
+
+* Import the functionality:
+  ```js
+  import { autolinkText } from '@kasisoft/remark-autolinker';
+  ```
+* Run the transformation of a text:
+  ```js
+    // RemarkAutolinkerOptions
+    const myconfig = {
+        debug: ['RootBefore', 'RootAfter'],
+        all: false,
+        caseInsensitive: false,
+        links: [
+            { key: 'Java', link: 'https://www.java.com/de/' },
+            ...
+        ],
+    };
+  const mytext: string = 'Some text...';
+  const transformed: (string|Link)[] = autolinkText(mytext, myconfig);
+  // each autolinked element is of type Link whereas non-matching
+  // elements remain simple text.
+  ```
+
 
 ### Configuration
 

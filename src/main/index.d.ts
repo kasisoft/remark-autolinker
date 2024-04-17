@@ -21,4 +21,5 @@ export interface RemarkAutolinkerOptions {
     links           : Link[],
 } /* ENDINTERFACE */
 
+export function autolinkText(text: string, options?: RemarkAutolinkerOptions): (string|Link)[];
 export function remarkAutolinker(options?: RemarkAutolinkerOptions): (tree: Parent) => void;

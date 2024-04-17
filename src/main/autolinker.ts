@@ -1,7 +1,7 @@
 import { Node, Parent } from 'unist';
 import { Text, Link } from 'mdast';
 
-import { RemarkAutolinkerOptions } from '$main/datatypes';
+import { Link as TLink, RemarkAutolinkerOptions } from '$main/datatypes';
 
 export interface AutolinkState {
     splitter: RegExp,                   // a regex matching all the keys
@@ -165,5 +165,32 @@ export function autolinkParagraph(state: AutolinkState, paragraph: Parent, all: 
             }
         }
     }
+
+}
+
+export function autolinkTextBlock(text: string, state: AutolinkState, all: boolean): (string|TLink)[] {
+
+    const result: (string|TLink)[] = [];
+    const partitioned: string[] | null = partitionText(state, text, all);
+    if (partitioned) {
+
+        for (let i = 0; i < partitioned.length; i++) {
+            const lowerKey: string = partitioned[i].toLocaleLowerCase();
+            if (state.linkMap.has(lowerKey)) {
+                result.push({
+                    "key": partitioned[i],
+                    "link": state.linkMap.get(lowerKey) as string
+                });
+                if (!all) {
+                    state.linkMap.delete(lowerKey);
+                }
+            } else {
+                result.push(partitioned[i]);
+            }
+        }
+    } else {
+        result.push(text);
+    }
+    return result;
 
 }

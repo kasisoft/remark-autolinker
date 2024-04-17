@@ -2,8 +2,8 @@ import { Parent, Node } from 'unist';
 
 import { debug, debugConfiguration } from '$main/log';
 import { locateParagraphs } from '$main/astutils';
-import { Debug, newRemarkAutolinkerOptions, RemarkAutolinkerOptions } from '$main/datatypes';
-import { autolinkParagraph, buildInitialState } from '$main/autolinker';
+import { Debug, Link, newRemarkAutolinkerOptions, RemarkAutolinkerOptions } from '$main/datatypes';
+import { autolinkParagraph, autolinkTextBlock, buildInitialState } from '$main/autolinker';
 
 export { RemarkAutolinkerOptions } from '$main/datatypes';
 
@@ -14,6 +14,19 @@ const DEFAULT_OPTIONS: RemarkAutolinkerOptions = {
     caseInsensitive : false,
     links           : [],
 };
+
+export function autolinkText(text: string, options: RemarkAutolinkerOptions = DEFAULT_OPTIONS): (string|Link)[] {
+
+    const config = newRemarkAutolinkerOptions({...DEFAULT_OPTIONS, ...options});
+    if ((config.debug & Debug.Default) != 0) {
+        debugConfiguration(DEFAULT_OPTIONS, options, config);
+    }
+
+    const autolinkState = buildInitialState(config);
+
+    return autolinkTextBlock(text, autolinkState, config.all);
+
+}
 
 // https://unifiedjs.com/learn/guide/create-a-plugin/
 export function remarkAutolinker(options: RemarkAutolinkerOptions = DEFAULT_OPTIONS) {
