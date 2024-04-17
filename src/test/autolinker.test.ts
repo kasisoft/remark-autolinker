@@ -3,8 +3,6 @@ import { expect, test } from 'vitest';
 import { Debug, RemarkAutolinkerOptions } from '$main/datatypes';
 import { remarkAutolinker } from '$main/index';
 import { listTestPairs, loadResource, runTransformer } from '$test/testutils';
-import { locateParagraphs } from '../main/astutils';
-
 
 const DEFAULT_OPTIONS: RemarkAutolinkerOptions = {
     debug           : Debug.None,
